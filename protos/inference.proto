@@ -1,0 +1,14 @@
+service Inference {
+
+  rpc Inference(Inquiry) returns (Result) {}
+
+}
+message Inquiry{
+  required string nodes = 1;
+  required int32 time = 2;
+  required int32 fanout = 3;
+}
+
+message Result{
+  required string res = 1;
+}
