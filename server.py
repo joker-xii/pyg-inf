@@ -15,7 +15,7 @@ class MyService(InferenceServicer):
         time = int(request.time)
         fanout = int(request.fanout)
         from main import predictor
-        result = predictor.get_predict_result(time, nodes, fanout)
+        result = predictor.get_predict_result(nodes, time, fanout)
         return Result(res=json.dumps(result))
 
 

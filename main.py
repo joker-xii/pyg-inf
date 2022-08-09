@@ -31,11 +31,31 @@ class Predict:
     def get_predict_result(self, time, ids, fanout):
         snapshot, sampler = self.get_data(time, fanout)
         batch_data = sampler.sample(torch.tensor(ids))
-        result = model(snapshot.x[batch_data[1]], batch_data[2].edge_index, snapshot.edge_attr[batch_data[2].e_id])
+        result = self.model(snapshot.x[batch_data[1]], batch_data[2].edge_index, snapshot.edge_attr[batch_data[2].e_id])
         return result[:batch_data[0]].cpu().tolist()
 
 
-predictor = Predict(model, data)
+from qv_inference import export_dist_tensor, export_model, export_edge_indx
+import config
+class QuiverPredict:
+    def __init__(self):
+        self.model = export_model
+        self.edge_index = export_edge_indx
+        self.dist_tensor = export_dist_tensor
+        self.sampler = NeighborSampler(export_edge_indx,
+                                       sizes=config.SAMPLE_PARAM, batch_size=config.BATCH_SIZE,
+                                       shuffle=True, persistent_workers=True,
+                                       num_workers=3)
+
+    def get_predict_result(self, ids, *args, **kwargs):
+        sampler = self.sampler
+        batch_data = sampler.sample(torch.tensor(ids))
+        result = self.model(self.dist_tensor[batch_data[1]], batch_data[2])
+        return result[:batch_data[0]].cpu().tolist()
+
+
+# predictor = Predict(model, data)
+predictor = QuiverPredict()
 if __name__ == '__main__':
     pass
 

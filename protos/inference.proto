@@ -1,7 +1,5 @@
 service Inference {
-
   rpc Inference(Inquiry) returns (Result) {}
-
 }
 message Inquiry{
   required string nodes = 1;
