@@ -1,5 +1,35 @@
 service Inference {
   rpc Inference(Inquiry) returns (Result) {}
+  rpc StreamingInference(stream SeedNode) returns (stream Result){}
+
+  rpc SetFixedBatchProperty(FixedBatchSizeProperty) returns (StatusCode){}
+  rpc StreamingFixedBatchInference(stream SeedNode) returns (stream Result){}
+
+  rpc SetDynamicBatchProperty(DynamicBatchSizeProperty)returns(StatusCode){}
+  rpc StreamingDynamicBatchInference(stream SeedNode) returns (stream Result){}
+
+  rpc StreamingInferenceByLabel(stream SeedNodeLabel) returns (stream Result){}
+}
+message StatusCode{
+  required int32 value = 1;
+}
+
+message FixedBatchSizeProperty{
+  required int32 batch_size = 1;
+}
+message DynamicBatchSizeProperty{
+  required int32 max_batch_size = 1;
+  required int32 max_allowed_latency = 2;
+
+}
+
+
+message SeedNodeLabel{
+  required string nodeLabel = 1;
+}
+//message
+message SeedNode{
+  required int32 node = 1;
 }
 message Inquiry{
   required string nodes = 1;

@@ -7,37 +7,91 @@ from google.protobuf import descriptor_pool as _descriptor_pool
 from google.protobuf import message as _message
 from google.protobuf import reflection as _reflection
 from google.protobuf import symbol_database as _symbol_database
-
 # @@protoc_insertion_point(imports)
 
 _sym_db = _symbol_database.Default()
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(
-    b'\n\x0finference.proto\"6\n\x07Inquiry\x12\r\n\x05nodes\x18\x01 \x02(\t\x12\x0c\n\x04time\x18\x02 \x02(\x05\x12\x0e\n\x06\x66\x61nout\x18\x03 \x02(\x05\"\x15\n\x06Result\x12\x0b\n\x03res\x18\x01 \x02(\t2-\n\tInference\x12 \n\tInference\x12\x08.Inquiry\x1a\x07.Result\"\x00')
 
+
+
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x0finference.proto\"\x1b\n\nStatusCode\x12\r\n\x05value\x18\x01 \x02(\x05\",\n\x16\x46ixedBatchSizeProperty\x12\x12\n\nbatch_size\x18\x01 \x02(\x05\"O\n\x18\x44ynamicBatchSizeProperty\x12\x16\n\x0emax_batch_size\x18\x01 \x02(\x05\x12\x1b\n\x13max_allowed_latency\x18\x02 \x02(\x05\"\"\n\rSeedNodeLabel\x12\x11\n\tnodeLabel\x18\x01 \x02(\t\"\x18\n\x08SeedNode\x12\x0c\n\x04node\x18\x01 \x02(\x05\"6\n\x07Inquiry\x12\r\n\x05nodes\x18\x01 \x02(\t\x12\x0c\n\x04time\x18\x02 \x02(\x05\x12\x0e\n\x06\x66\x61nout\x18\x03 \x02(\x05\"\x15\n\x06Result\x12\x0b\n\x03res\x18\x01 \x02(\t2\x95\x03\n\tInference\x12 \n\tInference\x12\x08.Inquiry\x1a\x07.Result\"\x00\x12.\n\x12StreamingInference\x12\t.SeedNode\x1a\x07.Result\"\x00(\x01\x30\x01\x12?\n\x15SetFixedBatchProperty\x12\x17.FixedBatchSizeProperty\x1a\x0b.StatusCode\"\x00\x12\x38\n\x1cStreamingFixedBatchInference\x12\t.SeedNode\x1a\x07.Result\"\x00(\x01\x30\x01\x12\x43\n\x17SetDynamicBatchProperty\x12\x19.DynamicBatchSizeProperty\x1a\x0b.StatusCode\"\x00\x12:\n\x1eStreamingDynamicBatchInference\x12\t.SeedNode\x1a\x07.Result\"\x00(\x01\x30\x01\x12:\n\x19StreamingInferenceByLabel\x12\x0e.SeedNodeLabel\x1a\x07.Result\"\x00(\x01\x30\x01')
+
+
+
+_STATUSCODE = DESCRIPTOR.message_types_by_name['StatusCode']
+_FIXEDBATCHSIZEPROPERTY = DESCRIPTOR.message_types_by_name['FixedBatchSizeProperty']
+_DYNAMICBATCHSIZEPROPERTY = DESCRIPTOR.message_types_by_name['DynamicBatchSizeProperty']
+_SEEDNODELABEL = DESCRIPTOR.message_types_by_name['SeedNodeLabel']
+_SEEDNODE = DESCRIPTOR.message_types_by_name['SeedNode']
 _INQUIRY = DESCRIPTOR.message_types_by_name['Inquiry']
 _RESULT = DESCRIPTOR.message_types_by_name['Result']
+StatusCode = _reflection.GeneratedProtocolMessageType('StatusCode', (_message.Message,), {
+  'DESCRIPTOR' : _STATUSCODE,
+  '__module__' : 'inference_pb2'
+  # @@protoc_insertion_point(class_scope:StatusCode)
+  })
+_sym_db.RegisterMessage(StatusCode)
+
+FixedBatchSizeProperty = _reflection.GeneratedProtocolMessageType('FixedBatchSizeProperty', (_message.Message,), {
+  'DESCRIPTOR' : _FIXEDBATCHSIZEPROPERTY,
+  '__module__' : 'inference_pb2'
+  # @@protoc_insertion_point(class_scope:FixedBatchSizeProperty)
+  })
+_sym_db.RegisterMessage(FixedBatchSizeProperty)
+
+DynamicBatchSizeProperty = _reflection.GeneratedProtocolMessageType('DynamicBatchSizeProperty', (_message.Message,), {
+  'DESCRIPTOR' : _DYNAMICBATCHSIZEPROPERTY,
+  '__module__' : 'inference_pb2'
+  # @@protoc_insertion_point(class_scope:DynamicBatchSizeProperty)
+  })
+_sym_db.RegisterMessage(DynamicBatchSizeProperty)
+
+SeedNodeLabel = _reflection.GeneratedProtocolMessageType('SeedNodeLabel', (_message.Message,), {
+  'DESCRIPTOR' : _SEEDNODELABEL,
+  '__module__' : 'inference_pb2'
+  # @@protoc_insertion_point(class_scope:SeedNodeLabel)
+  })
+_sym_db.RegisterMessage(SeedNodeLabel)
+
+SeedNode = _reflection.GeneratedProtocolMessageType('SeedNode', (_message.Message,), {
+  'DESCRIPTOR' : _SEEDNODE,
+  '__module__' : 'inference_pb2'
+  # @@protoc_insertion_point(class_scope:SeedNode)
+  })
+_sym_db.RegisterMessage(SeedNode)
+
 Inquiry = _reflection.GeneratedProtocolMessageType('Inquiry', (_message.Message,), {
-    'DESCRIPTOR': _INQUIRY,
-    '__module__': 'inference_pb2'
-    # @@protoc_insertion_point(class_scope:Inquiry)
-})
+  'DESCRIPTOR' : _INQUIRY,
+  '__module__' : 'inference_pb2'
+  # @@protoc_insertion_point(class_scope:Inquiry)
+  })
 _sym_db.RegisterMessage(Inquiry)
 
 Result = _reflection.GeneratedProtocolMessageType('Result', (_message.Message,), {
-    'DESCRIPTOR': _RESULT,
-    '__module__': 'inference_pb2'
-    # @@protoc_insertion_point(class_scope:Result)
-})
+  'DESCRIPTOR' : _RESULT,
+  '__module__' : 'inference_pb2'
+  # @@protoc_insertion_point(class_scope:Result)
+  })
 _sym_db.RegisterMessage(Result)
 
 _INFERENCE = DESCRIPTOR.services_by_name['Inference']
 if _descriptor._USE_C_DESCRIPTORS == False:
-    DESCRIPTOR._options = None
-    _INQUIRY._serialized_start = 19
-    _INQUIRY._serialized_end = 73
-    _RESULT._serialized_start = 75
-    _RESULT._serialized_end = 96
-    _INFERENCE._serialized_start = 98
-    _INFERENCE._serialized_end = 143
+
+  DESCRIPTOR._options = None
+  _STATUSCODE._serialized_start=19
+  _STATUSCODE._serialized_end=46
+  _FIXEDBATCHSIZEPROPERTY._serialized_start=48
+  _FIXEDBATCHSIZEPROPERTY._serialized_end=92
+  _DYNAMICBATCHSIZEPROPERTY._serialized_start=94
+  _DYNAMICBATCHSIZEPROPERTY._serialized_end=173
+  _SEEDNODELABEL._serialized_start=175
+  _SEEDNODELABEL._serialized_end=209
+  _SEEDNODE._serialized_start=211
+  _SEEDNODE._serialized_end=235
+  _INQUIRY._serialized_start=237
+  _INQUIRY._serialized_end=291
+  _RESULT._serialized_start=293
+  _RESULT._serialized_end=314
+  _INFERENCE._serialized_start=317
+  _INFERENCE._serialized_end=722
 # @@protoc_insertion_point(module_scope)
